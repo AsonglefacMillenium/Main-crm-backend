@@ -8,11 +8,11 @@ const options = {
       version: "1.0.0",
       description: "Role-based CRM system API documentation",
     },
-    servers: [
-      {
-        url: "http://localhost:5000",
-      },
-    ],
+    // servers: [
+    //   {
+    //     url: "http://localhost:5000",
+    //   },
+    // ],
     components: {
       securitySchemes: {
         bearerAuth: {
