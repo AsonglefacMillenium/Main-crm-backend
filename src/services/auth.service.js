@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const { User, Workspace } = require("../models");
 
 class AuthService {
-
   // Generate JWT
   static generateToken(user) {
     return jwt.sign(
@@ -13,13 +12,12 @@ class AuthService {
         workspaceId: user.WorkspaceId,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "7d" },
     );
   }
 
   // Register + Create Workspace
   static async register({ name, email, password, workspaceName }) {
-
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       throw new Error("User already exists");
@@ -47,7 +45,6 @@ class AuthService {
 
   // Join Existing Workspace
   static async joinWorkspace({ name, email, password, inviteCode }) {
-
     const workspace = await Workspace.findOne({ where: { inviteCode } });
     if (!workspace) throw new Error("Invalid invite code");
 
@@ -71,7 +68,6 @@ class AuthService {
 
   // Login
   static async login({ email, password }) {
-
     const user = await User.findOne({ where: { email } });
     if (!user) throw new Error("Invalid credentials");
 
@@ -82,6 +78,17 @@ class AuthService {
 
     return { user, token };
   }
+
+  // Get Current User
+  static async me(userId) {
+    const user = await User.findByPk(userId, {
+      attributes: { exclude: ["password"] },
+    });
+    if (!user) throw new Error("User not found");
+    return user;
+
+}
+
 }
 
 module.exports = AuthService;
