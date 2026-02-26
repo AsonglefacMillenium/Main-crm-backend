@@ -2,7 +2,7 @@ const AuthService = require("../services/auth.service");
 
 // class AuthController {
 
-  const register = async (req, res) => {
+const register = async (req, res) => {
     try {
       const result = await AuthService.register(req.body);
       res.status(201).json(result);
@@ -11,7 +11,7 @@ const AuthService = require("../services/auth.service");
     }
   }
 
-  const joinWorkspace = async (req, res) => {
+const joinWorkspace = async (req, res) => {
     try {
       const result = await AuthService.joinWorkspace(req.body);
       res.status(201).json(result);
@@ -20,7 +20,7 @@ const AuthService = require("../services/auth.service");
     }
   }
 
-  const login = async (req, res) => {
+ const login = async (req, res) => {
     try {
       const result = await AuthService.login(req.body);
       res.status(200).json(result);
@@ -29,10 +29,15 @@ const AuthService = require("../services/auth.service");
     }
   }
 
-  const me = async (req, res) => {
+const me = async (req, res) => {
     res.json(req.user);
   }
 //}
 
-module.exports = { register, joinWorkspace, login, me };
+module.exports = {
+  register,
+  joinWorkspace,
+  login,
+  me
+}
 

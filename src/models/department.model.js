@@ -1,6 +1,7 @@
 // models/department.model.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const User = require("./user.model");
 
 const Department = sequelize.define("Department", {
   id: {
@@ -14,5 +15,8 @@ const Department = sequelize.define("Department", {
   },
   description: DataTypes.TEXT,
 });
+
+Department.hasMany(User);
+User.belongsTo(Department);
 
 module.exports = Department;

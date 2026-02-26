@@ -20,9 +20,9 @@ Product.belongsTo(Workspace);
 Workspace.hasMany(Lead);
 Lead.belongsTo(Workspace);
 
-// Department relations
-Department.hasMany(User);
-User.belongsTo(Department);
+// // Department relations
+// Department.hasMany(User);
+// User.belongsTo(Department);
 
 // Lead relations
 Lead.hasMany(Contact);
