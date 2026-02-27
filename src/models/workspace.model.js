@@ -18,4 +18,16 @@ const Workspace = sequelize.define("Workspace", {
   },
 });
 
+Workspace.associate = (models) => {
+  Workspace.hasMany(models.Department, {
+    foreignKey: "WorkspaceId",
+  });
+  Workspace.belongsToMany(models.User, {
+    through: models.UserWorkspace,
+    foreignKey: "WorkspaceId",
+  });
+  
+
+};  
+
 module.exports = Workspace;

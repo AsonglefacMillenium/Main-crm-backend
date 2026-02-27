@@ -6,6 +6,8 @@ const Lead = require("./lead.model");
 const Contact = require("./contact.model");
 const Task = require("./task.model");
 const Activity = require("./activity.model");
+const DepartmentMember = require("./departmentMember.model");
+const sequelize = require("../config/database");
 
 // Workspace relations
 Workspace.hasMany(Department);
@@ -42,6 +44,8 @@ Task.belongsTo(User);
 Task.hasMany(Activity);
 Activity.belongsTo(Task);
 
+
+
 module.exports = {
   Workspace,
   Department,
@@ -51,4 +55,5 @@ module.exports = {
   Contact,
   Task,
   Activity,
+  DepartmentMember,
 };

@@ -25,6 +25,7 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/department", require("./routes/department.route"));
+app.use("/api/workspace", require("./routes/workspace.route"));
 // app.use("/api/lead", require("./routes/lead.route"));
 // app.use("/api/contact", require("./routes/contact.route"));
 

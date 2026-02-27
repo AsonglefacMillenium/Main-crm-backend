@@ -5,7 +5,7 @@ const app = require("./app");
 const sequelize = require("./config/database");
 const models = require("./models"); // make sure all models imported
 
-sequelize.sync({ force: false }) // set true only if you want to drop/recreate tables
+sequelize.sync({ alter: true }) // set true only if you want to drop/recreate tables
   .then(() => {
     console.log("Database synced ✅");
   })

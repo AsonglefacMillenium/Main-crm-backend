@@ -25,4 +25,14 @@ const User = sequelize.define("User", {
   providerId: DataTypes.STRING,
 });
 
+User.associate = (models) => {
+  User.belongsToMany(models.Workspace, {  foreignKey: "WorkspaceId" });
+ 
+  User.belongsToMany(models.Department, {
+    through: models.DepartmentMember,
+    foreignKey: "UserId",
+    otherKey: "DepartmentId",
+  });
+};
+
 module.exports = User;
