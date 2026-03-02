@@ -25,6 +25,17 @@ const DepartmentMember = sequelize.define("DepartmentMember", {
   },
 });
 
+DepartmentMember.associate = (models) => {
+  DepartmentMember.belongsTo(models.Department, {
+    foreignKey: "DepartmentId", 
+    onDelete: "CASCADE",
+  });
+  DepartmentMember.belongsTo(models.User, {     
+    foreignKey: "UserId",
+    onDelete: "CASCADE",
+  });
+}
+
 module.exports = DepartmentMember;
 
 // module.exports = (sequelize, DataTypes) => {

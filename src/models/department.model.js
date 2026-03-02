@@ -23,10 +23,15 @@ Department.associate = (models) => {
     allowNull: false,
     onDelete: "CASCADE",
   });
-  Department.belongsToMany(models.User, {
+  Department.hasMany(models.User, {
     through: models.DepartmentMember,
     foreignKey: "DepartmentId",
     otherKey: "UserId",
+  });
+
+  Department.hasMany(models.DepartmentMember, {
+    foreignKey: "DepartmentId",
+    onDelete: "CASCADE",
   });
 };
 

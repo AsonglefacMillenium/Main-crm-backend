@@ -83,19 +83,20 @@ const removeUserFromDepartment = async ({ departmentId, userId, workspaceId }) =
 };
 
 const getDepartmentUsers = async ({ departmentId }) => {
-  const department = await Department.findByPk(departmentId, {
-    // include: [
-    //   {
-    //     model: User,
-    //     attributes: ["id", "name", "email"],
-    //     through: { attributes: ["role"] }, // hides DepartmentMember
-    //   },
-    // ],
+  const department = await DepartmentMember.findOne({
+    where: { DepartmentId: departmentId },
+    include: [
+      {
+        model: User,
+        attributes: ["id", "name", "email"],
+        through: { attributes: ["role"] }, // hides DepartmentMember
+      },
+    ],
   });
 
   if (!department) throw new Error("Department not found");
 
-  return department;
+  return department.Users ? department.Users.map((u) => u.toJSON()) : [];
 };
 
 module.exports = {

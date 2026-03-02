@@ -28,11 +28,13 @@ const User = sequelize.define("User", {
 User.associate = (models) => {
   User.belongsToMany(models.Workspace, {  foreignKey: "WorkspaceId" });
  
-  User.belongsToMany(models.Department, {
+  User.belongsTo(models.Department, {
     through: models.DepartmentMember,
     foreignKey: "UserId",
     otherKey: "DepartmentId",
   });
+
+  User.belongsTo(models.Department, { foreignKey: "DepartmentId" });
 };
 
 module.exports = User;
